@@ -60,3 +60,4 @@ export async function fetchLiveBengaluruWeather(): Promise<BengaluruWeather> {
     isLive: false
   };
 }
+

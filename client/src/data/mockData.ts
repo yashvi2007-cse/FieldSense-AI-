@@ -836,3 +836,4 @@ export const INITIAL_EVIDENCE: EvidenceItem[] = [
     relatedAnomalyIds: ['anom-06']
   }
 ];
+

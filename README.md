@@ -91,3 +91,4 @@ Backend API documentation (Swagger UI) is available at `http://localhost:8000/do
 ## 🛡️ License
 
 MIT License. Built for the autonomous physical-world intelligence challenge.
+

@@ -293,3 +293,4 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     </div>
   );
 };
+

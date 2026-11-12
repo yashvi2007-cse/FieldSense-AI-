@@ -45,3 +45,4 @@ export const AgentStatusBadge: React.FC<AgentStatusBadgeProps> = ({ status }) =>
       );
   }
 };
+

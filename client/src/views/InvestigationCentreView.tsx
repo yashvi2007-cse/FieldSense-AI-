@@ -3,17 +3,11 @@ import {
   SearchCode, 
   MapPin, 
   Clock, 
-  FileText, 
   CheckCircle2, 
   AlertTriangle, 
-  Layers, 
-  Share2, 
-  Download, 
   ChevronRight,
-  ShieldCheck,
-  TrendingUp,
-  Activity,
-  ArrowRight
+  ArrowRight,
+  Download
 } from 'lucide-react';
 import { Investigation, Anomaly, EvidenceItem } from '../types';
 
@@ -46,18 +40,18 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
   );
 
   return (
-    <div className="space-y-6 pb-12">
+    <div className="space-y-8 max-w-7xl mx-auto pb-16">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-[#0c1324] border border-cyan-500/20 shadow-xl">
-        <div className="space-y-1">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 lg:p-8 rounded-3xl modern-card">
+        <div className="space-y-1.5">
           <div className="flex items-center space-x-2">
             <SearchCode className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-xl font-mono font-bold text-white uppercase tracking-wider">
+            <h1 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
               Investigation Centre & Root-Cause Dossier
             </h1>
           </div>
-          <p className="text-xs text-slate-400 font-mono">
-            Autonomous multi-modal causal attribution linking anomalous physical observations to legal, cadastral, and industrial drivers.
+          <p className="text-xs text-slate-400">
+            Multi-modal causal reasoning linking physical anomalies to upstream industrial, cadastral, and topological drivers.
           </p>
         </div>
 
@@ -67,10 +61,10 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
             <button
               key={inv.id}
               onClick={() => setActiveInvId(inv.id)}
-              className={`px-3 py-1.5 rounded-lg border transition-all ${
+              className={`px-3.5 py-1.5 rounded-full border transition-all ${
                 activeInvId === inv.id
                   ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-bold'
-                  : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                  : 'bg-slate-900 border-white/10 text-slate-400 hover:text-slate-200'
               }`}
             >
               #{inv.id.toUpperCase()}
@@ -80,119 +74,90 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
       </div>
 
       {/* Main Investigation Dossier */}
-      <div className="p-6 rounded-2xl bg-[#0a0f1d] border border-cyan-500/25 shadow-2xl space-y-6">
+      <div className="p-6 lg:p-10 rounded-3xl modern-card space-y-8">
         {/* Header Metadata */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-          <div className="space-y-1">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
+          <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30 font-bold">
                 {activeInvestigation.assignedAgent}
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase">
+              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 uppercase">
                 {activeInvestigation.status.replace('_', ' ')}
               </span>
-              <span className="text-slate-500 text-xs font-mono">| {activeInvestigation.timestamp}</span>
+              <span className="text-slate-500 text-xs font-mono">{activeInvestigation.timestamp}</span>
             </div>
-            <h2 className="text-lg lg:text-xl font-bold text-white font-mono">
+            <h2 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
               {activeInvestigation.title}
             </h2>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => window.print()}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono transition-colors"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Export Dossier</span>
-            </button>
-          </div>
+          <button
+            onClick={() => window.print()}
+            className="flex items-center space-x-2 px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-300 text-xs font-mono transition-colors self-start lg:self-auto"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Export Dossier</span>
+          </button>
         </div>
 
-        {/* 7 Core Investigation Questions (Structured Report) */}
+        {/* 4 Quick Structured Q&A Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Question 1: What Changed? */}
-          <div className="p-4 rounded-xl bg-[#0d1527] border border-cyan-500/15 space-y-1.5">
+          <div className="p-5 rounded-2xl bg-slate-900/50 border border-white/5 space-y-2">
             <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
               1. What Changed? (Physical Delta)
             </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-sans">
+            <p className="text-xs text-slate-300 leading-relaxed">
               {activeInvestigation.whatChanged}
             </p>
           </div>
 
-          {/* Question 2: Where did it happen? */}
-          <div className="p-4 rounded-xl bg-[#0d1527] border border-cyan-500/15 space-y-1.5">
+          <div className="p-5 rounded-2xl bg-slate-900/50 border border-white/5 space-y-2">
             <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
-              2. Where Did It Happen? (Spatial Coordinates)
+              2. Where Did It Happen? (Location)
             </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-mono flex items-center space-x-1.5">
+            <p className="text-xs text-slate-300 leading-relaxed flex items-center space-x-1.5 font-mono">
               <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0" />
               <span>{activeInvestigation.whereLocation}</span>
             </p>
           </div>
-
-          {/* Question 3: When was it detected? */}
-          <div className="p-4 rounded-xl bg-[#0d1527] border border-cyan-500/15 space-y-1.5">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
-              3. When Was It Detected? (Temporal Sequence)
-            </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-mono flex items-center space-x-1.5">
-              <Clock className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-              <span>{activeInvestigation.whenDetected}</span>
-            </p>
-          </div>
-
-          {/* Question 4: Uncertainty & Confidence Rating */}
-          <div className="p-4 rounded-xl bg-[#0d1527] border border-cyan-500/15 space-y-1.5">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
-              4. Evidence Certainty & Confidence Bounds
-            </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              {activeInvestigation.uncertaintyAssessment}
-            </p>
-          </div>
         </div>
 
-        {/* Question 5: What might have caused it? (Causal Hypotheses) */}
-        <div className="p-5 rounded-xl bg-[#0d1527] border border-cyan-500/20 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
-              5. What Might Have Caused It? (Ranked Causal Hypotheses)
-            </div>
-            <span className="text-[10px] font-mono text-slate-400">Bayesian Likelihood Engine</span>
+        {/* Ranked Causal Hypotheses */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-white">
+              Ranked Causal Hypotheses (Bayesian Attribution)
+            </h3>
+            <span className="text-xs text-slate-500 font-mono">
+              Confidence {activeInvestigation.uncertaintyAssessment}
+            </span>
           </div>
 
           <div className="space-y-3">
             {activeInvestigation.causalHypotheses.map((hyp, index) => (
-              <div key={index} className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800 space-y-2">
+              <div key={index} className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-5 h-5 rounded-full bg-cyan-950 text-cyan-400 text-xs font-mono font-bold flex items-center justify-center border border-cyan-500/40">
-                      {index + 1}
-                    </span>
-                    <span className="text-xs font-bold text-white font-mono">
-                      {hyp.cause}
-                    </span>
-                  </div>
-
-                  <span className="text-xs font-mono font-bold text-cyan-300 px-2 py-0.5 rounded bg-cyan-950 border border-cyan-500/30">
+                  <span className="text-sm font-bold text-white">
+                    {index + 1}. {hyp.cause}
+                  </span>
+                  <span className="text-xs font-mono font-bold text-cyan-300 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/30">
                     {hyp.probability}% PROBABILITY
                   </span>
                 </div>
 
                 <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                   <div 
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" 
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" 
                     style={{ width: `${hyp.probability}%` }}
                   />
                 </div>
 
-                <div className="text-xs text-slate-300 font-sans flex items-start justify-between gap-3 pt-1">
+                <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
                   <span>Rationale: {hyp.rationale}</span>
                   <button
                     onClick={() => onInspectEvidence(hyp.evidenceRef)}
-                    className="text-[10px] font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1 flex-shrink-0"
+                    className="text-cyan-400 hover:text-cyan-300 font-mono text-xs flex items-center space-x-1"
                   >
                     <span>Inspect #{hyp.evidenceRef.toUpperCase()}</span>
                     <ChevronRight className="w-3 h-3" />
@@ -203,66 +168,26 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
           </div>
         </div>
 
-        {/* Question 6: What could happen next? (Projected Consequences) */}
-        <div className="p-5 rounded-xl bg-[#0d1527] border border-cyan-500/20 space-y-3">
-          <div className="text-xs font-mono font-bold uppercase tracking-wider text-amber-300 border-b border-slate-800 pb-2">
-            6. What Could Happen Next? (Projected Consequences & Risk Horizon)
-          </div>
-
-          <div className="space-y-2">
-            {activeInvestigation.projectedConsequences.map((consequence, idx) => (
-              <div key={idx} className="flex items-start space-x-2.5 text-xs text-slate-300">
-                <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-                <span>{consequence}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Question 7: What should be done? (Recommended Responses) */}
-        <div className="p-5 rounded-xl bg-[#0d1527] border border-cyan-500/20 space-y-3">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300">
-              7. What Should Be Done? (Action Agent Directives)
-            </div>
+        {/* Action Directives */}
+        <div className="p-6 rounded-2xl bg-slate-900/50 border border-white/5 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-white">
+              Recommended Municipal Directives
+            </h3>
             <button
               onClick={() => onNavigate('action_centre')}
               className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
             >
-              <span>View In Action Centre</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>View in Action Centre</span>
+              <ArrowRight className="w-3 h-3" />
             </button>
           </div>
 
           <div className="space-y-2">
-            {activeInvestigation.recommendedResponses.map((response, idx) => (
-              <div key={idx} className="flex items-start space-x-2.5 text-xs text-slate-200">
+            {activeInvestigation.recommendedResponses.map((res, i) => (
+              <div key={i} className="flex items-start space-x-2 text-xs text-slate-300">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <span>{response}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Associated Supporting Evidence Strip */}
-        <div className="pt-2">
-          <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
-            Supporting Evidence Dossier ({supportingEvidence.length} Datasets)
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {supportingEvidence.map((ev) => (
-              <div
-                key={ev.id}
-                onClick={() => onInspectEvidence(ev.id)}
-                className="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all space-y-1.5"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-cyan-400 font-bold">#{ev.id.toUpperCase()}</span>
-                  <span className="text-[10px] font-mono text-emerald-400">{ev.qualityScore}% Quality</span>
-                </div>
-                <div className="text-xs font-bold text-white line-clamp-1">{ev.title}</div>
-                <div className="text-[10px] text-slate-400 font-mono line-clamp-1">{ev.source}</div>
+                <span>{res}</span>
               </div>
             ))}
           </div>
