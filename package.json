@@ -1,0 +1,14 @@
+{
+  "name": "fieldsense-ai-workspace",
+  "version": "1.0.0",
+  "description": "FieldSense AI — Autonomous Physical-World Intelligence Platform",
+  "scripts": {
+    "dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview",
+    "backend": "source .venv/bin/activate && uvicorn backend.main:app --reload --port 8000"
+  },
+  "keywords": ["ai", "autonomous-agents", "geospatial", "urban-water", "earth-observation", "sentinel-2", "iot"],
+  "author": "FieldSense AI Team",
+  "license": "MIT"
+}
