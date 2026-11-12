@@ -62,6 +62,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   const [showSensors, setShowSensors] = useState(true);
   const [showAnomalies, setShowAnomalies] = useState(true);
   const [satelliteOverlay, setSatelliteOverlay] = useState(false);
+  const [isSatelliteMode, setIsSatelliteMode] = useState(false);
 
   const bengaluruCenter: [number, number] = [12.9716, 77.6200];
 
@@ -70,6 +71,16 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       {/* Map Layer Controls floating bar */}
       {showControls && (
         <div className="absolute top-3 left-3 z-[1000] flex flex-wrap gap-2 p-2 rounded-xl bg-[#0b1220]/90 backdrop-blur-md border border-cyan-500/30 text-xs font-mono shadow-xl">
+          <button
+            onClick={() => setIsSatelliteMode(!isSatelliteMode)}
+            className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg border transition-all ${
+              isSatelliteMode ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold' : 'bg-slate-900/60 border-slate-700 text-slate-400'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>{isSatelliteMode ? 'Satellite Mode' : 'Dark Grid Mode'}</span>
+          </button>
+
           <button
             onClick={() => setShowWaterbodies(!showWaterbodies)}
             className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg border transition-all ${
@@ -109,16 +120,6 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
             <AlertTriangle className="w-3.5 h-3.5" />
             <span>Anomalies ({anomalies.length})</span>
           </button>
-
-          <button
-            onClick={() => setSatelliteOverlay(!satelliteOverlay)}
-            className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg border transition-all ${
-              satelliteOverlay ? 'bg-purple-950/70 border-purple-500/50 text-purple-300' : 'bg-slate-900/50 border-slate-700 text-slate-400'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>Sentinel NDWI</span>
-          </button>
         </div>
       )}
 
@@ -130,12 +131,21 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
           scrollWheelZoom={true}
           style={{ height: '100%', width: '100%', backgroundColor: '#060a12' }}
         >
-          {/* High-Tech Dark Tile Layer */}
-          <TileLayer
-            attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            maxZoom={19}
-          />
+          {/* High-Tech Dark Tile Layer without any API Key requirements or watermarks */}
+          {isSatelliteMode ? (
+            <TileLayer
+              attribution='&copy; <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+          ) : (
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              className="dark-map-tiles"
+              maxZoom={19}
+            />
+          )}
 
           {/* Stormwater Drain Polyline Corridors */}
           {showDrains &&

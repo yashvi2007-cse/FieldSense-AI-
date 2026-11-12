@@ -59,6 +59,11 @@
   font-family: inherit;
 }
 
+/* High-tech dark styling for standard OpenStreetMap tiles (No API Key Required, No Watermarks) */
+.dark-map-tiles {
+  filter: brightness(0.6) invert(1) contrast(2.8) hue-rotate(195deg) saturate(0.25) brightness(0.75);
+}
+
 .leaflet-popup-content-wrapper {
   background: #0c1220 !important;
   color: #f1f5f9 !important;
