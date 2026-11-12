@@ -75,30 +75,33 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Executive Command Briefing Bar */}
-      <div className="p-6 lg:p-7 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-5">
-        <div className="space-y-1.5 max-w-3xl">
-          <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>METROPOLITAN SURVEILLANCE RUNNING</span>
-            <span className="text-white/[0.2]">|</span>
-            <span>BENGALURU CORE & EAST DRAINAGE VALLEYS</span>
+      <div className="p-6 lg:p-8 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="space-y-2 max-w-3xl relative z-10">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-mono font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>CONTINUOUS OBSERVATION ACTIVE</span>
+            <span className="text-white/20">•</span>
+            <span>BENGALURU METROPOLITAN BASIN</span>
           </div>
 
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-            Urban Water & Catchment Intelligence Center
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            Catchment Intelligence Center
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-            Automated environmental intelligence pipeline reading physical catchment dynamics through satellite multi-spectral telemetry, IoT sensor networks, and hydrodynamic forecasting.
+          <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed max-w-2xl">
+            Autonomous multi-agent physical surveillance monitoring water stages, drainage corridor siltation, and flood risk across Bengaluru's urban river basins.
           </p>
         </div>
 
         {/* Master Execution CTA */}
-        <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
+        <div className="flex flex-wrap items-center gap-3 self-start md:self-auto relative z-10">
           <button
             onClick={onRunAutonomousPipeline}
             disabled={isPipelineRunning}
-            className="flex items-center space-x-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-black transition-colors disabled:opacity-50 shadow-md shadow-sky-500/20"
+            className="flex items-center space-x-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-sky-400 hover:bg-sky-300 text-slate-950 transition-all disabled:opacity-50 shadow-lg shadow-sky-500/20 active:scale-[0.98]"
           >
             <Zap className={`w-3.5 h-3.5 fill-current ${isPipelineRunning ? 'animate-bounce' : ''}`} />
             <span>{isPipelineRunning ? 'Orchestrating Cycle...' : 'Run Autonomous Cycle'}</span>
@@ -106,7 +109,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
           <button
             onClick={() => onNavigate('simulation_lab')}
-            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/[0.1] transition-colors"
+            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/[0.1] transition-all active:scale-[0.98]"
           >
             <span>Scenario Lab</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -116,61 +119,70 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
       {/* 4 Professional KPI Metrics (High-Signal, Clean Design) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-xl enterprise-card space-y-2">
+        <div className="p-6 rounded-2xl surface-card space-y-2 group hover:border-sky-500/30 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Surface Water Area</span>
-            <Droplet className="w-4 h-4 text-sky-400" />
+            <span className="font-semibold uppercase tracking-wider text-[11px] text-slate-400">Surface Water Area</span>
+            <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+              <Droplet className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold font-mono tracking-tight text-white">
-            765 <span className="text-xs font-normal text-slate-400 font-sans">Ha Monitored</span>
+          <div className="text-3xl font-black font-mono tracking-tight text-white">
+            765 <span className="text-sm font-normal text-slate-400 font-sans">Ha</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono">
-            Across 8 Major Catchments
+          <div className="text-xs text-slate-400 flex items-center space-x-1">
+            <span className="text-sky-400 font-medium">8 Monitored</span>
+            <span>water bodies</span>
           </div>
         </div>
 
-        <div className="p-5 rounded-xl enterprise-card space-y-2">
+        <div className="p-6 rounded-2xl surface-card space-y-2 group hover:border-amber-500/30 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Active Incidents</span>
-            <AlertTriangle className="w-4 h-4 text-amber-400" />
+            <span className="font-semibold uppercase tracking-wider text-[11px] text-slate-400">Active Incidents</span>
+            <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+              <AlertTriangle className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold font-mono tracking-tight text-white">
-            {anomalies.length} <span className="text-xs font-normal text-amber-400 font-sans font-bold">({criticalAnomalies.length} Critical)</span>
+          <div className="text-3xl font-black font-mono tracking-tight text-white">
+            {anomalies.length} <span className="text-xs font-semibold text-amber-400 font-sans">({criticalAnomalies.length} Critical)</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono">
+          <div className="text-xs text-slate-400">
             Bellandur & K-100 SWD
           </div>
         </div>
 
-        <div className="p-5 rounded-xl enterprise-card space-y-2">
+        <div className="p-6 rounded-2xl surface-card space-y-2 group hover:border-emerald-500/30 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Cognitive Agents</span>
-            <Cpu className="w-4 h-4 text-emerald-400" />
+            <span className="font-semibold uppercase tracking-wider text-[11px] text-slate-400">Cognitive Agents</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <Cpu className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold font-mono tracking-tight text-white">
-            6 / 6 <span className="text-xs font-normal text-emerald-400 font-sans font-bold">Synchronized</span>
+          <div className="text-3xl font-black font-mono tracking-tight text-white">
+            6 / 6 <span className="text-xs font-semibold text-emerald-400 font-sans">Synchronized</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono">
+          <div className="text-xs text-slate-400 font-mono">
             Avg Confidence: 94.8%
           </div>
         </div>
 
-        <div className="p-5 rounded-xl enterprise-card space-y-2">
+        <div className="p-6 rounded-2xl surface-card space-y-2 group hover:border-cyan-500/30 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Precipitation Inflow</span>
-            <TrendingUp className="w-4 h-4 text-sky-400" />
+            <span className="font-semibold uppercase tracking-wider text-[11px] text-slate-400">Precipitation Inflow</span>
+            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <TrendingUp className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-bold font-mono tracking-tight text-white">
-            {weather.precipitation} <span className="text-xs font-normal text-slate-400 font-sans">mm/h</span>
+          <div className="text-3xl font-black font-mono tracking-tight text-white">
+            {weather.precipitation} <span className="text-sm font-normal text-slate-400 font-sans">mm/h</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono">
-            {weather.isLive ? 'Live Open-Meteo API' : 'Calibrated Baseline'}
+          <div className="text-xs text-slate-400">
+            {weather.isLive ? 'Live Open-Meteo Stream' : 'Live In-Situ Telemetry'}
           </div>
         </div>
       </div>
 
       {/* Autonomous Pipeline Sequence (Clean Architecture View) */}
-      <div className="p-6 rounded-2xl enterprise-card space-y-4">
+      <div className="p-6 rounded-2xl surface-card space-y-4">
         <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
           <div className="flex items-center space-x-2">
             <span className="text-xs font-bold tracking-wider uppercase text-slate-300 font-mono">
@@ -237,7 +249,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
         {/* 24h Catchment Hydrograph (1 Column) */}
         <div className="space-y-4">
-          <div className="p-6 rounded-2xl enterprise-card space-y-4">
+          <div className="p-6 rounded-2xl surface-card space-y-4">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
                 24h Catchment Hydrograph
@@ -284,7 +296,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
       </div>
 
       {/* Operational Field Directives Queue */}
-      <div className="p-6 rounded-2xl enterprise-card space-y-4">
+      <div className="p-6 rounded-2xl surface-card space-y-4">
         <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
           <div className="space-y-0.5">
             <h3 className="text-sm font-semibold text-white">

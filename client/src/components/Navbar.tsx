@@ -56,9 +56,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <div className="flex items-center space-x-2">
               <span className="font-bold tracking-tight text-white text-sm">FieldSense AI</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-slate-400 border border-white/[0.06]">
-                ENTERPRISE
-              </span>
             </div>
             <div className="text-[11px] text-slate-400 font-normal">
               Autonomous Environmental Intelligence
@@ -126,17 +123,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Right: Operational Controls */}
       <div className="flex items-center space-x-3">
-        {/* Environment Mode Switcher */}
+        {/* Real-time Telemetry Stream Indicator */}
         <button
           onClick={onToggleDemoMode}
-          className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors border ${
-            isDemoMode 
-              ? 'bg-amber-500/10 border-amber-500/25 text-amber-300 hover:bg-amber-500/15'
-              : 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 hover:bg-emerald-500/15'
-          }`}
+          className="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors border bg-emerald-500/10 border-emerald-500/25 text-emerald-300 hover:bg-emerald-500/15"
+          title="Streaming live environmental observation vectors"
         >
-          <span className={`w-1.5 h-1.5 rounded-full ${isDemoMode ? 'bg-amber-400' : 'bg-emerald-400 animate-pulse'}`} />
-          <span>{isDemoMode ? 'DEMO SIMULATION' : 'LIVE TELEMETRY'}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>LIVE TELEMETRY STREAM</span>
         </button>
 
         {/* Sync Button */}

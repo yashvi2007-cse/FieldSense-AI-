@@ -48,7 +48,7 @@ export const LiveEarthMonitorView: React.FC<LiveEarthMonitorViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Header Bar */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Globe2 className="w-4 h-4 text-sky-400" />
@@ -113,7 +113,7 @@ export const LiveEarthMonitorView: React.FC<LiveEarthMonitorViewProps> = ({
 
         {/* Selected Waterbody Details Panel */}
         <div className="space-y-4">
-          <div className="p-5 rounded-2xl enterprise-card space-y-4">
+          <div className="p-5 rounded-2xl surface-card space-y-4">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="space-y-0.5">
                 <span className="text-[10px] font-mono text-sky-400 uppercase tracking-wider font-bold">
@@ -183,7 +183,7 @@ export const LiveEarthMonitorView: React.FC<LiveEarthMonitorViewProps> = ({
           </div>
 
           {/* Basin List */}
-          <div className="p-4 rounded-2xl enterprise-card space-y-2">
+          <div className="p-4 rounded-2xl surface-card space-y-2">
             <div className="text-xs font-semibold text-slate-400 px-2 pb-1 border-b border-white/[0.06]">
               Monitored Basins ({filteredWaterbodies.length})
             </div>

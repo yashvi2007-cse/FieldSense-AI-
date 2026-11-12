@@ -40,7 +40,7 @@ export const EvidenceCentreView: React.FC<EvidenceCentreViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <FolderArchive className="w-4 h-4 text-sky-400" />
@@ -80,7 +80,7 @@ export const EvidenceCentreView: React.FC<EvidenceCentreViewProps> = ({
               <div
                 key={ev.id}
                 onClick={() => setActiveEvidence(ev)}
-                className={`p-5 rounded-xl cursor-pointer transition-colors space-y-2.5 enterprise-card ${
+                className={`p-5 rounded-xl cursor-pointer transition-colors space-y-2.5 surface-card ${
                   isSelected ? 'border-sky-400/50 bg-white/[0.05]' : ''
                 }`}
               >
@@ -125,7 +125,7 @@ export const EvidenceCentreView: React.FC<EvidenceCentreViewProps> = ({
 
         {/* Selected Evidence Inspector */}
         <div className="space-y-4">
-          <div className="p-5 rounded-2xl enterprise-card space-y-4 sticky top-24">
+          <div className="p-5 rounded-2xl surface-card space-y-4 sticky top-24">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
                 Payload Inspector #{activeEvidence.id.toUpperCase()}

@@ -60,7 +60,7 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <TrendingUp className="w-4 h-4 text-sky-400" />
@@ -95,7 +95,7 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-5">
           {/* Comparative Risk Bar Chart */}
-          <div className="p-5 rounded-2xl enterprise-card space-y-3">
+          <div className="p-5 rounded-2xl surface-card space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
                 Catchment Risk Severity (0 - 100 Index)
@@ -132,7 +132,7 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
                 <div
                   key={risk.id}
                   onClick={() => setSelectedRisk(risk)}
-                  className={`p-5 rounded-xl cursor-pointer transition-colors space-y-2.5 enterprise-card ${
+                  className={`p-5 rounded-xl cursor-pointer transition-colors space-y-2.5 surface-card ${
                     isSelected ? 'border-sky-400/50 bg-white/[0.05]' : ''
                   }`}
                 >
@@ -183,7 +183,7 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
 
         {/* Selected Risk Deep-Dive (1 Col) */}
         <div className="space-y-4">
-          <div className="p-5 rounded-2xl enterprise-card space-y-4 sticky top-24">
+          <div className="p-5 rounded-2xl surface-card space-y-4 sticky top-24">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
                 Risk Horizon Analysis

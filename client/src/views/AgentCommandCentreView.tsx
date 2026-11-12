@@ -39,7 +39,7 @@ export const AgentCommandCentreView: React.FC<AgentCommandCentreViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Header Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <Cpu className="w-4 h-4 text-sky-400" />
@@ -112,7 +112,7 @@ export const AgentCommandCentreView: React.FC<AgentCommandCentreViewProps> = ({
       {/* Selected Agent Dossier + Terminal Stream */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-6 rounded-2xl enterprise-card space-y-5">
+          <div className="p-6 rounded-2xl surface-card space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
               <div className="space-y-1">
                 <div className="flex items-center space-x-2">
@@ -186,7 +186,7 @@ export const AgentCommandCentreView: React.FC<AgentCommandCentreViewProps> = ({
 
         {/* Live Stream Terminal (1 Column) */}
         <div className="space-y-4">
-          <div className="p-5 rounded-2xl enterprise-card flex flex-col h-[520px]">
+          <div className="p-5 rounded-2xl surface-card flex flex-col h-[520px]">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-3">
               <div className="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300">
                 <Terminal className="w-4 h-4 text-sky-400" />

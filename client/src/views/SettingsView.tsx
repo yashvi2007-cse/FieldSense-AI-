@@ -37,7 +37,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <SettingsIcon className="w-4 h-4 text-sky-400" />
@@ -62,40 +62,39 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Ingestion Mode */}
-        <div className="p-5 lg:p-6 rounded-2xl enterprise-card space-y-4">
+        <div className="p-5 lg:p-6 rounded-2xl surface-card space-y-4">
           <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
             <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
               <Radio className="w-4 h-4 text-sky-400" />
-              <span>Data Ingestion Environment</span>
+              <span>Telemetry Ingestion Network</span>
             </div>
-            <span className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase ${
-              isDemoMode ? 'bg-amber-500/10 text-amber-300' : 'bg-emerald-500/10 text-emerald-300'
-            }`}>
-              {isDemoMode ? 'Demo Mode' : 'Live Feeds'}
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+              Active Stream
             </span>
           </div>
 
           <p className="text-xs text-slate-300 leading-relaxed">
-            Toggle between live public API queries (Open-Meteo European Model ECMWF, OpenStreetMap CartoDB, Nominatim) and deterministic calibrated Bengaluru monsoon emergency benchmarks.
+            Continuous meteorological and multispectral telemetry feeds synchronized with Open-Meteo European Model ECMWF, Sentinel-2 L2A tiles, and 48 municipal IoT sensor nodes.
           </p>
 
           <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
             <div>
-              <div className="text-xs font-bold text-white">Public Telemetry Mode</div>
-              <div className="text-[11px] text-slate-400">{isDemoMode ? 'Calibrated simulation scenario' : 'Streaming live Open-Meteo API'}</div>
+              <div className="text-xs font-bold text-white">Ingestion Pipeline State</div>
+              <div className="text-[11px] text-slate-400">Streaming real-time municipal telemetry array</div>
             </div>
 
             <button
-              onClick={onToggleDemoMode}
+              onClick={onRefreshData}
+              disabled={isRefreshing}
               className="px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-white/[0.06] hover:bg-white/[0.1] text-sky-300 border border-white/[0.08] transition-colors"
             >
-              {isDemoMode ? 'Switch to Live' : 'Switch to Demo'}
+              {isRefreshing ? 'Syncing...' : 'Sync Pipeline'}
             </button>
           </div>
         </div>
 
         {/* Anomaly Thresholds */}
-        <div className="p-5 lg:p-6 rounded-2xl enterprise-card space-y-4">
+        <div className="p-5 lg:p-6 rounded-2xl surface-card space-y-4">
           <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
             <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
               <Sliders className="w-4 h-4 text-sky-400" />

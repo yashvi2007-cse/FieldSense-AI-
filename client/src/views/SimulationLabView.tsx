@@ -64,7 +64,7 @@ export const SimulationLabView: React.FC<SimulationLabViewProps> = ({
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <FlaskIcon className="w-4 h-4 text-sky-400" />
@@ -100,7 +100,7 @@ export const SimulationLabView: React.FC<SimulationLabViewProps> = ({
       {/* Main Grid: Controls (1 Col) + Simulation Results (2 Cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Controls (1 Col) */}
-        <div className="p-5 rounded-2xl enterprise-card space-y-5">
+        <div className="p-5 rounded-2xl surface-card space-y-5">
           <div className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono border-b border-white/[0.08] pb-3">
             Simulation Parameters
           </div>
@@ -177,21 +177,21 @@ export const SimulationLabView: React.FC<SimulationLabViewProps> = ({
         <div className="lg:col-span-2 space-y-5">
           {/* Comparison Cards */}
           <div className="grid grid-cols-3 gap-3">
-            <div className="p-4 rounded-xl enterprise-card space-y-1">
+            <div className="p-4 rounded-xl surface-card space-y-1">
               <div className="text-[11px] text-slate-400 font-mono">Baseline Inundation</div>
               <div className="text-xl font-bold font-mono text-slate-300">
                 {result.baselineInundationAreaHa} <span className="text-xs font-normal">Ha</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl enterprise-card space-y-1">
+            <div className="p-4 rounded-xl surface-card space-y-1">
               <div className="text-[11px] text-red-400 font-mono">Scenario Inundation</div>
               <div className="text-xl font-bold font-mono text-red-400">
                 {result.simulatedInundationAreaHa} <span className="text-xs font-normal">Ha</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl enterprise-card space-y-1">
+            <div className="p-4 rounded-xl surface-card space-y-1">
               <div className="text-[11px] text-slate-400 font-mono">Population at Risk</div>
               <div className="text-xl font-bold font-mono text-amber-300">
                 {result.affectedPopulationEstimate.toLocaleString()}
@@ -200,7 +200,7 @@ export const SimulationLabView: React.FC<SimulationLabViewProps> = ({
           </div>
 
           {/* 24h Hydrodynamic Curve */}
-          <div className="p-5 rounded-2xl enterprise-card space-y-3">
+          <div className="p-5 rounded-2xl surface-card space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
                 Projected 24-Hour Runoff Hydrograph

@@ -41,7 +41,7 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-5 lg:p-6 rounded-2xl surface-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <SearchCode className="w-4 h-4 text-sky-400" />
@@ -73,7 +73,7 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
       </div>
 
       {/* Main Investigation Dossier */}
-      <div className="p-6 lg:p-8 rounded-2xl enterprise-card space-y-6">
+      <div className="p-6 lg:p-8 rounded-2xl surface-card space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
           <div className="space-y-1.5">
             <div className="flex items-center space-x-2">
