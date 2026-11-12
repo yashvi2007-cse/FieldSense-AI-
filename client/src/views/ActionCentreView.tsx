@@ -71,13 +71,13 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 lg:p-8 rounded-3xl modern-card">
-        <div className="space-y-1.5">
+      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <CheckSquare className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
+            <CheckSquare className="w-4 h-4 text-sky-400" />
+            <h1 className="text-lg font-bold text-white tracking-tight">
               Action Centre & Field Directives
             </h1>
           </div>
@@ -88,24 +88,24 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center space-x-2 px-6 py-3 rounded-full font-mono text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all"
+          className="flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-black transition-colors"
         >
-          <Plus className="w-4 h-4" />
-          <span>NEW DIRECTIVE</span>
+          <Plus className="w-3.5 h-3.5" />
+          <span>New Directive</span>
         </button>
       </div>
 
       {/* Filter Pills */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-slate-900/60 border border-white/5 text-xs font-mono">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl enterprise-card text-xs font-mono">
         <div className="flex flex-wrap items-center gap-2">
           {['all', 'BBMP Stormwater Dept', 'BWSSB Wastewater Unit', 'KSPCB Enforcement'].map((ag) => (
             <button
               key={ag}
               onClick={() => setSelectedAgency(ag)}
-              className={`px-3 py-1.5 rounded-full border transition-all ${
+              className={`px-2.5 py-1 rounded transition-colors ${
                 selectedAgency === ag
-                  ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-bold'
-                  : 'bg-slate-900 border-white/5 text-slate-400 hover:text-slate-200'
+                  ? 'bg-sky-500/20 text-sky-300 font-bold border border-sky-500/30'
+                  : 'bg-white/[0.04] text-slate-400 hover:text-slate-200'
               }`}
             >
               {ag === 'all' ? 'All Responders' : ag.replace(' Dept', '').replace(' Unit', '')}
@@ -118,10 +118,10 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
             <button
               key={st}
               onClick={() => setSelectedStatus(st)}
-              className={`px-3 py-1.5 rounded-full border capitalize transition-all ${
+              className={`px-2.5 py-1 rounded capitalize transition-colors ${
                 selectedStatus === st
-                  ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 font-bold'
-                  : 'bg-slate-900 border-white/5 text-slate-400 hover:text-slate-200'
+                  ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30'
+                  : 'bg-white/[0.04] text-slate-400 hover:text-slate-200'
               }`}
             >
               {st.replace('_', ' ')}
@@ -132,7 +132,7 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3">
           {filteredActions.map((action) => {
             const isSelected = activeAction.id === action.id;
             const isCompleted = action.status === 'completed';
@@ -141,25 +141,25 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
               <div
                 key={action.id}
                 onClick={() => setActiveAction(action)}
-                className={`p-6 rounded-3xl cursor-pointer transition-all space-y-3 modern-card ${
-                  isSelected ? 'border-cyan-400/60 shadow-[0_0_20px_rgba(0,229,255,0.15)] bg-slate-900/90' : ''
+                className={`p-5 rounded-xl cursor-pointer transition-colors space-y-3 enterprise-card ${
+                  isSelected ? 'border-sky-400/50 bg-white/[0.05]' : ''
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
-                      <span className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
+                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
                         action.priority === 'P1 - Immediate'
-                          ? 'bg-red-500/10 text-red-300 border border-red-500/30'
-                          : 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                          ? 'bg-red-500/10 text-red-300 border border-red-500/20'
+                          : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                       }`}>
                         {action.priority}
                       </span>
 
-                      <span className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase ${
+                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase ${
                         isCompleted
-                          ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30'
-                          : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
+                          ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
+                          : 'bg-sky-500/10 text-sky-300 border border-sky-500/20'
                       }`}>
                         {action.status.replace('_', ' ')}
                       </span>
@@ -167,12 +167,12 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                       <span className="text-slate-500 text-xs">{action.category}</span>
                     </div>
 
-                    <h3 className={`text-base font-bold pt-1 ${isCompleted ? 'line-through text-slate-400' : 'text-white'}`}>
+                    <h3 className={`text-sm font-bold pt-0.5 ${isCompleted ? 'line-through text-slate-400' : 'text-white'}`}>
                       {action.title}
                     </h3>
 
                     <div className="text-xs text-slate-400 flex items-center space-x-1.5 pt-0.5">
-                      <MapPin className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                      <MapPin className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
                       <span>{action.location}</span>
                     </div>
                   </div>
@@ -185,7 +185,7 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                           e.stopPropagation();
                           onCompleteAction(action.id);
                         }}
-                        className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold transition-all flex items-center space-x-1"
+                        className="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-semibold transition-colors flex items-center space-x-1"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Done</span>
@@ -203,9 +203,9 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                   {action.description}
                 </p>
 
-                <div className="flex items-center justify-between text-xs text-slate-400 border-t border-white/5 pt-2">
+                <div className="flex items-center justify-between text-xs text-slate-400 border-t border-white/[0.06] pt-2">
                   <span>Responder: <span className="text-white">{action.assignedAgency}</span></span>
-                  <span className="text-cyan-400 font-mono text-[11px]">{action.verificationStatus}</span>
+                  <span className="text-sky-400 font-mono text-[11px]">{action.verificationStatus}</span>
                 </div>
               </div>
             );
@@ -214,9 +214,9 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
 
         {/* Selected Action Inspector */}
         <div className="space-y-4">
-          <div className="p-6 lg:p-8 rounded-3xl modern-card space-y-5 sticky top-24">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+          <div className="p-5 rounded-2xl enterprise-card space-y-4 sticky top-24">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
                 Ticket #{activeAction.id.toUpperCase()}
               </span>
               <span className="text-xs text-slate-400 font-mono">
@@ -224,7 +224,7 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
               </span>
             </div>
 
-            <h2 className="text-lg font-bold text-white">
+            <h2 className="text-base font-bold text-white">
               {activeAction.title}
             </h2>
 
@@ -232,8 +232,8 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
               {activeAction.description}
             </p>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-white/5 space-y-1 text-xs">
-              <div className="text-[10px] text-cyan-400 font-mono font-bold uppercase">Responsible Authority</div>
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-1 text-xs">
+              <div className="text-[10px] text-sky-400 font-mono font-bold uppercase">Responsible Authority</div>
               <div className="text-white font-medium">{activeAction.assignedAgency}</div>
               <div className="text-slate-500 text-[11px]">{activeAction.location}</div>
             </div>
@@ -241,7 +241,7 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
             {activeAction.status !== 'completed' && (
               <button
                 onClick={() => onCompleteAction(activeAction.id)}
-                className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-black text-xs font-mono font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center space-x-2"
+                className="w-full py-2.5 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-colors flex items-center justify-center space-x-1.5"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Mark Action Completed</span>
@@ -254,9 +254,9 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
       {/* Modal */}
       {showCreateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className="w-full max-w-lg rounded-3xl bg-[#0c1220] border border-white/10 p-8 shadow-2xl space-y-5">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-              <h3 className="text-lg font-bold text-white">
+          <div className="w-full max-w-lg rounded-2xl bg-[#0f1523] border border-white/10 p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+              <h3 className="text-base font-bold text-white">
                 Create Field Directive
               </h3>
               <button onClick={() => setShowCreateModal(false)} className="text-slate-400 hover:text-white">
@@ -264,8 +264,8 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
               </button>
             </div>
 
-            <form onSubmit={handleCreateSubmit} className="space-y-4 text-xs">
-              <div className="space-y-1.5">
+            <form onSubmit={handleCreateSubmit} className="space-y-3.5 text-xs">
+              <div className="space-y-1">
                 <label className="text-slate-300 font-medium">Directive Title</label>
                 <input
                   type="text"
@@ -273,11 +273,11 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                   placeholder="e.g. Deploy submersible pumps at Yamalur underpass"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white focus:outline-none focus:border-sky-400"
                 />
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label className="text-slate-300 font-medium">Description</label>
                 <textarea
                   rows={3}
@@ -285,17 +285,17 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                   placeholder="Details of intervention..."
                   value={newDescription}
                   onChange={(e) => setNewDescription(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white focus:outline-none focus:border-cyan-400 resize-none"
+                  className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white focus:outline-none focus:border-sky-400 resize-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label className="text-slate-300 font-medium">Priority</label>
                   <select
                     value={newPriority}
                     onChange={(e) => setNewPriority(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white"
+                    className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-white/[0.08] text-white"
                   >
                     <option value="P1 - Immediate">P1 - Immediate</option>
                     <option value="P2 - High">P2 - High</option>
@@ -303,12 +303,12 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                   </select>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label className="text-slate-300 font-medium">Assigned Agency</label>
                   <select
                     value={newAgency}
                     onChange={(e) => setNewAgency(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white"
+                    className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-white/[0.08] text-white"
                   >
                     <option value="BBMP Stormwater Dept">BBMP Stormwater Dept</option>
                     <option value="BWSSB Wastewater Unit">BWSSB Wastewater Unit</option>
@@ -317,17 +317,17 @@ export const ActionCentreView: React.FC<ActionCentreViewProps> = ({
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-3 pt-3">
+              <div className="flex justify-end space-x-2 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="px-5 py-2.5 rounded-full bg-slate-800 text-slate-300 font-medium"
+                  className="px-4 py-2 rounded-lg bg-white/[0.06] text-slate-300 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-black"
+                  className="px-5 py-2 rounded-lg bg-sky-500 font-semibold text-black"
                 >
                   Dispatch Directive
                 </button>

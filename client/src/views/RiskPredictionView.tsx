@@ -58,14 +58,14 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
   ];
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 lg:p-8 rounded-3xl modern-card">
-        <div className="space-y-1.5">
+      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <TrendingUp className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
-              Risk Prediction & Hydrological Forecasts
+            <TrendingUp className="w-4 h-4 text-sky-400" />
+            <h1 className="text-lg font-bold text-white tracking-tight">
+              Hydrodynamic Risk Forecasts & Modeling
             </h1>
           </div>
           <p className="text-xs text-slate-400">
@@ -74,14 +74,14 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
         </div>
 
         {/* Horizon Tabs */}
-        <div className="flex rounded-full bg-slate-900/80 border border-white/10 p-1 text-xs font-mono">
+        <div className="flex rounded-lg bg-white/[0.04] border border-white/[0.08] p-1 text-xs font-mono">
           {(['all', '24 Hours', '48 Hours', '7 Days'] as const).map((h) => (
             <button
               key={h}
               onClick={() => setSelectedHorizon(h)}
-              className={`px-3.5 py-1.5 rounded-full capitalize transition-all ${
+              className={`px-3 py-1 rounded capitalize transition-colors ${
                 selectedHorizon === h
-                  ? 'bg-cyan-500/20 text-cyan-300 font-bold'
+                  ? 'bg-sky-500/20 text-sky-300 font-bold'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -93,14 +93,14 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-5">
           {/* Comparative Risk Bar Chart */}
-          <div className="p-6 lg:p-8 rounded-3xl modern-card space-y-4">
+          <div className="p-5 rounded-2xl enterprise-card space-y-3">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
-              <span className="text-sm font-semibold text-white">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
                 Catchment Risk Severity (0 - 100 Index)
               </span>
-              <span className="text-xs font-mono text-cyan-400">Hydrodynamic Mesh</span>
+              <span className="text-xs font-mono text-sky-400">Saint-Venant 2D Mesh</span>
             </div>
 
             <div className="h-56 w-full">
@@ -111,20 +111,20 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
                   <YAxis stroke="#64748b" tick={{ fontSize: 10, fill: '#94a3b8' }} domain={[0, 100]} />
                   <RechartsTooltip
                     contentStyle={{
-                      backgroundColor: '#0c1220',
+                      backgroundColor: '#0f1624',
                       borderColor: 'rgba(255, 255, 255, 0.1)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       fontSize: '11px',
                     }}
                   />
-                  <Bar dataKey="score" fill="#00e5ff" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="score" fill="#38bdf8" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Risk Cards */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {filteredRisks.map((risk) => {
               const isSelected = selectedRisk.id === risk.id;
 
@@ -132,44 +132,44 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
                 <div
                   key={risk.id}
                   onClick={() => setSelectedRisk(risk)}
-                  className={`p-6 rounded-3xl cursor-pointer transition-all space-y-3 modern-card ${
-                    isSelected ? 'border-cyan-400/60 shadow-[0_0_20px_rgba(0,229,255,0.15)] bg-slate-900/90' : ''
+                  className={`p-5 rounded-xl cursor-pointer transition-colors space-y-2.5 enterprise-card ${
+                    isSelected ? 'border-sky-400/50 bg-white/[0.05]' : ''
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
-                        <span className={`text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full ${
+                        <span className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded ${
                           risk.riskLevel === 'Critical'
-                            ? 'bg-red-500/10 text-red-300 border border-red-500/30'
+                            ? 'bg-red-500/10 text-red-300 border border-red-500/20'
                             : risk.riskLevel === 'Elevated'
-                            ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
-                            : 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
+                            ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+                            : 'bg-sky-500/10 text-sky-300 border border-sky-500/20'
                         }`}>
                           {risk.riskLevel}
                         </span>
-                        <span className="text-xs text-slate-400 font-mono">{risk.horizon} Horizon</span>
+                        <span className="text-xs text-slate-400 font-mono">{risk.horizon}</span>
                         <span className="text-slate-600">|</span>
-                        <span className="text-xs text-cyan-400 font-medium">{risk.riskCategory}</span>
+                        <span className="text-xs text-sky-400 font-medium">{risk.riskCategory}</span>
                       </div>
 
-                      <h3 className="text-base font-bold text-white pt-1">
+                      <h3 className="text-sm font-bold text-white pt-0.5">
                         {risk.locationName}
                       </h3>
                     </div>
 
                     <div className="text-right">
-                      <div className="text-2xl font-mono font-bold text-white">
+                      <div className="text-xl font-mono font-bold text-white">
                         {risk.riskScore} <span className="text-xs font-normal text-slate-500">/ 100</span>
                       </div>
-                      <div className="text-xs font-mono text-slate-400 flex items-center justify-end space-x-1 pt-0.5">
+                      <div className="text-[11px] font-mono text-slate-400 flex items-center justify-end space-x-1">
                         {risk.forecastTrend === 'increasing' ? (
                           <span className="text-red-400 flex items-center font-bold">
-                            <ArrowUpRight className="w-3.5 h-3.5" /> Trend Rising
+                            <ArrowUpRight className="w-3 h-3" /> Rising
                           </span>
                         ) : (
                           <span className="text-emerald-400 flex items-center font-bold">
-                            <ArrowDownRight className="w-3.5 h-3.5" /> Trend Declining
+                            <ArrowDownRight className="w-3 h-3" /> Decreasing
                           </span>
                         )}
                       </div>
@@ -183,18 +183,18 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
 
         {/* Selected Risk Deep-Dive (1 Col) */}
         <div className="space-y-4">
-          <div className="p-6 lg:p-8 rounded-3xl modern-card space-y-5 sticky top-24">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
-                Risk Horizon Assessment
+          <div className="p-5 rounded-2xl enterprise-card space-y-4 sticky top-24">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
+                Risk Horizon Analysis
               </span>
               <span className="text-xs font-mono text-slate-400">
-                Certainty: {selectedRisk.confidence}%
+                Confidence: {selectedRisk.confidence}%
               </span>
             </div>
 
-            <div className="space-y-1">
-              <h2 className="text-lg font-bold text-white">
+            <div className="space-y-0.5">
+              <h2 className="text-base font-bold text-white">
                 {selectedRisk.locationName}
               </h2>
               <div className="text-xs text-slate-400">
@@ -203,9 +203,9 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
             </div>
 
             {/* 7-Day Curve */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="text-xs text-slate-400 font-mono">7-Day Trajectory Curve</div>
-              <div className="h-40 w-full bg-slate-900/50 p-2 rounded-2xl border border-white/5">
+              <div className="h-40 w-full bg-white/[0.02] p-2 rounded-xl border border-white/[0.06]">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={forecastTrendData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" />
@@ -213,9 +213,9 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
                     <YAxis stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} domain={[0, 100]} />
                     <RechartsTooltip
                       contentStyle={{
-                        backgroundColor: '#0c1220',
+                        backgroundColor: '#0f1624',
                         borderColor: 'rgba(255, 255, 255, 0.1)',
-                        borderRadius: '12px',
+                        borderRadius: '8px',
                         fontSize: '10px',
                       }}
                     />
@@ -225,15 +225,13 @@ export const RiskPredictionView: React.FC<RiskPredictionViewProps> = ({
               </div>
             </div>
 
-            <div className="pt-2">
-              <button
-                onClick={() => onLaunchSimulation(selectedRisk.locationName)}
-                className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black text-xs font-mono font-bold transition-all shadow-[0_0_20px_rgba(0,229,255,0.25)] flex items-center justify-center space-x-2"
-              >
-                <span>Simulate Inundation Envelope</span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+            <button
+              onClick={() => onLaunchSimulation(selectedRisk.locationName)}
+              className="w-full py-2.5 px-3 rounded-lg bg-sky-500 hover:bg-sky-400 text-black text-xs font-semibold transition-colors flex items-center justify-center space-x-1.5"
+            >
+              <span>Simulate Catchment Dynamics</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

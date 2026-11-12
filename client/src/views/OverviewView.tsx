@@ -4,14 +4,14 @@ import {
   Cpu, 
   AlertTriangle, 
   TrendingUp, 
-  ArrowRight,
-  CloudRain,
-  Wind,
-  Zap,
-  CheckCircle2,
-  Sparkles,
-  ShieldCheck,
-  ChevronRight
+  ArrowRight, 
+  Zap, 
+  CheckCircle2, 
+  Clock, 
+  ShieldCheck, 
+  Layers,
+  ChevronRight,
+  ExternalLink
 } from 'lucide-react';
 import { 
   AreaChart, 
@@ -50,7 +50,6 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   onRunAutonomousPipeline,
   isPipelineRunning,
 }) => {
-  // Smooth 24-Hour Catchment Hydrodynamics
   const hydrographData = [
     { time: '00:00', waterStage: 3.8, precipitation: 2.1 },
     { time: '04:00', waterStage: 4.0, precipitation: 4.5 },
@@ -65,122 +64,124 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   const criticalAnomalies = anomalies.filter(a => a.severity === 'critical');
 
   const pipelineStages = [
-    { step: '01', title: 'Observe', desc: 'Sentinel-2 & 48 IoT Gauges', color: 'text-cyan-400' },
-    { step: '02', title: 'Detect', desc: 'Baseline Anomaly Isolation', color: 'text-teal-400' },
-    { step: '03', title: 'Investigate', desc: 'Causal Attribution & Zoning', color: 'text-blue-400' },
-    { step: '04', title: 'Predict', desc: '2D Hydrodynamic Forecasting', color: 'text-purple-400' },
-    { step: '05', title: 'Act', desc: 'Municipal Intervention Directives', color: 'text-amber-400' },
-    { step: '06', title: 'Verify', desc: 'Post-Action Satellite Audit', color: 'text-emerald-400' },
+    { step: '01', title: 'Observation', desc: 'Sentinel-2 L2A + 48 IoT Nodes', status: 'Active' },
+    { step: '02', title: 'Change Detection', desc: 'Seasonal Baseline Deviation', status: 'Active' },
+    { step: '03', title: 'Investigation', desc: 'Bayesian Causal Attribution', status: 'Active' },
+    { step: '04', title: 'Prediction', desc: '2D Hydrodynamic Modeling', status: 'Active' },
+    { step: '05', title: 'Action Planning', desc: 'Municipal Resource Routing', status: 'Active' },
+    { step: '06', title: 'Verification', desc: 'Post-Event Satellite Audit', status: 'Active' },
   ];
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
-      {/* Editorial Tech Hero Banner — YTU Startup House Inspired */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0c1324] via-[#080d19] to-[#060911] border border-white/10 p-8 lg:p-12 shadow-2xl">
-        <div className="relative z-10 space-y-6 max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 text-xs font-mono">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="tracking-wide font-medium">BENGALURU ENVIRONMENTAL INTELLIGENCE</span>
+    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+      {/* Executive Command Briefing Bar */}
+      <div className="p-6 lg:p-7 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div className="space-y-1.5 max-w-3xl">
+          <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>METROPOLITAN SURVEILLANCE RUNNING</span>
+            <span className="text-white/[0.2]">|</span>
+            <span>BENGALURU CORE & EAST DRAINAGE VALLEYS</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Reading the physical world <br />
-            <span className="text-gradient-cyan">as closely as code.</span>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            Urban Water & Catchment Intelligence Center
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
-            An autonomous multi-agent intelligence platform that synthesizes satellite multispectral bands, municipal IoT sensors, and hydrological forecasting into verified physical actions.
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onRunAutonomousPipeline}
-              disabled={isPipelineRunning}
-              className="flex items-center space-x-2.5 px-6 py-3.5 rounded-full font-mono text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black shadow-[0_0_25px_rgba(0,229,255,0.35)] transition-all disabled:opacity-50"
-            >
-              <Zap className={`w-4 h-4 fill-current ${isPipelineRunning ? 'animate-bounce' : ''}`} />
-              <span>{isPipelineRunning ? 'ORCHESTRATING PIPELINE...' : 'RUN AUTONOMOUS CYCLE'}</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('simulation_lab')}
-              className="flex items-center space-x-2 px-6 py-3.5 rounded-full font-mono text-xs font-medium bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-white/10 transition-all"
-            >
-              <span>Scenario Simulation Lab</span>
-              <ArrowRight className="w-4 h-4 text-slate-400" />
-            </button>
-          </div>
-        </div>
-
-        {/* Ambient background glow decoration */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      </div>
-
-      {/* Curated High-Impact KPI Highlights (Less Clutter, Maximum Impact) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 rounded-2xl modern-card space-y-3">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Active Water Basins</span>
-            <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-              <Droplet className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-bold font-mono tracking-tight text-white">
-            765 <span className="text-sm font-normal text-slate-400">Hectares</span>
-          </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Continuous Sentinel-2 surface water monitoring across Bellandur, Varthur, Ulsoor, and Hebbal basins.
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+            Automated environmental intelligence pipeline reading physical catchment dynamics through satellite multi-spectral telemetry, IoT sensor networks, and hydrodynamic forecasting.
           </p>
         </div>
 
-        <div className="p-6 rounded-2xl modern-card space-y-3">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Cognitive Multi-Agent Loop</span>
-            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <Cpu className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-bold font-mono tracking-tight text-white">
-            6 / 6 <span className="text-sm font-normal text-emerald-400 font-sans">Active</span>
-          </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Observe, Detect, Investigate, Predict, Act, and Verify operating in automated continuous synchronization.
-          </p>
-        </div>
+        {/* Master Execution CTA */}
+        <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
+          <button
+            onClick={onRunAutonomousPipeline}
+            disabled={isPipelineRunning}
+            className="flex items-center space-x-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-black transition-colors disabled:opacity-50 shadow-md shadow-sky-500/20"
+          >
+            <Zap className={`w-3.5 h-3.5 fill-current ${isPipelineRunning ? 'animate-bounce' : ''}`} />
+            <span>{isPipelineRunning ? 'Orchestrating Cycle...' : 'Run Autonomous Cycle'}</span>
+          </button>
 
-        <div className="p-6 rounded-2xl modern-card space-y-3">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-medium">Priority Hotspots</span>
-            <div className="p-2 rounded-xl bg-red-500/10 text-red-400 border border-red-500/20">
-              <AlertTriangle className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-bold font-mono tracking-tight text-white">
-            {criticalAnomalies.length} <span className="text-sm font-normal text-red-400 font-sans">Critical</span>
-          </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Bellandur spillway froth surge & K-100 SWD 56% drain constriction under active mitigation.
-          </p>
+          <button
+            onClick={() => onNavigate('simulation_lab')}
+            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg text-xs font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/[0.1] transition-colors"
+          >
+            <span>Scenario Lab</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
 
-      {/* Closed-Loop Pipeline Stages (Interactive Visual Story) */}
-      <div className="p-6 lg:p-8 rounded-3xl modern-card space-y-6">
-        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-          <div className="space-y-1">
-            <h2 className="text-base font-semibold text-white tracking-tight">
-              Autonomous Intelligence Pipeline
-            </h2>
-            <p className="text-xs text-slate-400">
-              Closed-loop execution sequence bridging raw earth telemetry to physical verified outcomes
-            </p>
+      {/* 4 Professional KPI Metrics (High-Signal, Clean Design) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-5 rounded-xl enterprise-card space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-medium">Surface Water Area</span>
+            <Droplet className="w-4 h-4 text-sky-400" />
+          </div>
+          <div className="text-2xl font-bold font-mono tracking-tight text-white">
+            765 <span className="text-xs font-normal text-slate-400 font-sans">Ha Monitored</span>
+          </div>
+          <div className="text-[11px] text-slate-400 font-mono">
+            Across 8 Major Catchments
+          </div>
+        </div>
+
+        <div className="p-5 rounded-xl enterprise-card space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-medium">Active Incidents</span>
+            <AlertTriangle className="w-4 h-4 text-amber-400" />
+          </div>
+          <div className="text-2xl font-bold font-mono tracking-tight text-white">
+            {anomalies.length} <span className="text-xs font-normal text-amber-400 font-sans font-bold">({criticalAnomalies.length} Critical)</span>
+          </div>
+          <div className="text-[11px] text-slate-400 font-mono">
+            Bellandur & K-100 SWD
+          </div>
+        </div>
+
+        <div className="p-5 rounded-xl enterprise-card space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-medium">Cognitive Agents</span>
+            <Cpu className="w-4 h-4 text-emerald-400" />
+          </div>
+          <div className="text-2xl font-bold font-mono tracking-tight text-white">
+            6 / 6 <span className="text-xs font-normal text-emerald-400 font-sans font-bold">Synchronized</span>
+          </div>
+          <div className="text-[11px] text-slate-400 font-mono">
+            Avg Confidence: 94.8%
+          </div>
+        </div>
+
+        <div className="p-5 rounded-xl enterprise-card space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-medium">Precipitation Inflow</span>
+            <TrendingUp className="w-4 h-4 text-sky-400" />
+          </div>
+          <div className="text-2xl font-bold font-mono tracking-tight text-white">
+            {weather.precipitation} <span className="text-xs font-normal text-slate-400 font-sans">mm/h</span>
+          </div>
+          <div className="text-[11px] text-slate-400 font-mono">
+            {weather.isLive ? 'Live Open-Meteo API' : 'Calibrated Baseline'}
+          </div>
+        </div>
+      </div>
+
+      {/* Autonomous Pipeline Sequence (Clean Architecture View) */}
+      <div className="p-6 rounded-2xl enterprise-card space-y-4">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+          <div className="flex items-center space-x-2">
+            <span className="text-xs font-bold tracking-wider uppercase text-slate-300 font-mono">
+              Autonomous Intelligence Loop
+            </span>
           </div>
           <button
             onClick={() => onNavigate('agent_command_centre')}
-            className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
+            className="text-xs text-sky-400 hover:text-sky-300 font-medium flex items-center space-x-1"
           >
-            <span>Agent Orchestration Hub</span>
+            <span>Agent Orchestrator</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -190,13 +191,13 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             <div 
               key={stage.step}
               onClick={() => onNavigate('agent_command_centre')}
-              className="p-4 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-cyan-500/30 cursor-pointer transition-all space-y-2 group"
+              className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-sky-500/30 hover:bg-white/[0.04] cursor-pointer transition-colors space-y-1"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-slate-500 font-bold">{stage.step}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="flex items-center justify-between text-[10px] font-mono text-slate-500">
+                <span>PHASE {stage.step}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               </div>
-              <div className={`text-sm font-bold ${stage.color}`}>
+              <div className="text-xs font-bold text-slate-100">
                 {stage.title}
               </div>
               <div className="text-[11px] text-slate-400 line-clamp-2">
@@ -207,22 +208,21 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
       </div>
 
-      {/* Interactive Map & Hydrograph Section */}
+      {/* Geospatial Surveillance & Catchment Hydrograph */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Map takes 2 Columns */}
         <div className="lg:col-span-2 space-y-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <h3 className="text-sm font-semibold text-white">
-                Live Catchment Surveillance Grid
-              </h3>
+            <div className="flex items-center space-x-2 text-xs font-medium text-slate-300">
+              <span className="w-2 h-2 rounded-full bg-sky-400" />
+              <span className="font-semibold text-white">Geospatial Surveillance Grid</span>
+              <span className="text-slate-500">• EPSG:4326 PostGIS</span>
             </div>
             <button
               onClick={() => onNavigate('live_earth_monitor')}
-              className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
+              className="text-xs text-sky-400 hover:text-sky-300 font-medium flex items-center space-x-1"
             >
-              <span>Expand Map</span>
+              <span>Full GIS Workspace</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -235,16 +235,14 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
           />
         </div>
 
-        {/* Catchment Hydrograph (1 Column) */}
+        {/* 24h Catchment Hydrograph (1 Column) */}
         <div className="space-y-4">
-          <div className="p-6 rounded-3xl modern-card space-y-4">
-            <div className="space-y-1">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
-                24-Hour Stage & Precipitation
+          <div className="p-6 rounded-2xl enterprise-card space-y-4">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
+                24h Catchment Hydrograph
               </span>
-              <h3 className="text-base font-semibold text-white">
-                Bellandur Catchment
-              </h3>
+              <span className="text-xs font-mono text-sky-400">Bellandur</span>
             </div>
 
             <div className="h-56 w-full">
@@ -252,8 +250,8 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                 <AreaChart data={hydrographData}>
                   <defs>
                     <linearGradient id="stageGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#00e5ff" stopOpacity={0.35}/>
-                      <stop offset="95%" stopColor="#00e5ff" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#38bdf8" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" />
@@ -261,76 +259,76 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                   <YAxis stroke="#64748b" tick={{ fontSize: 10, fill: '#94a3b8' }} domain={[0, 6]} unit="m" />
                   <RechartsTooltip
                     contentStyle={{
-                      backgroundColor: '#0c1220',
+                      backgroundColor: '#0f1624',
                       borderColor: 'rgba(255, 255, 255, 0.1)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       fontSize: '11px',
                     }}
                   />
-                  <Area type="monotone" dataKey="waterStage" stroke="#00e5ff" strokeWidth={2.5} fillOpacity={1} fill="url(#stageGrad)" />
+                  <Area type="monotone" dataKey="waterStage" stroke="#38bdf8" strokeWidth={2} fillOpacity={1} fill="url(#stageGrad)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
 
-            <div className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 text-xs text-slate-400 space-y-1">
-              <div className="flex justify-between text-slate-300">
-                <span>Peak Water Stage:</span>
-                <span className="text-white font-mono font-bold">5.3m / 5.2m Max</span>
+            <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] text-xs space-y-1">
+              <div className="flex justify-between text-slate-300 font-medium">
+                <span>Current Stage:</span>
+                <span className="text-white font-mono font-bold">4.82m <span className="text-slate-500 font-normal">/ 5.2m Max Capacity</span></span>
               </div>
-              <p className="text-[11px] text-slate-500">
-                Weir crest overpressure active; chemical anti-foamer deployed.
+              <p className="text-[11px] text-slate-400">
+                Sluice gate diversion active; weir spillway under automated monitoring.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Prioritized Directives (Clean, uncluttered list) */}
-      <div className="p-6 lg:p-8 rounded-3xl modern-card space-y-4">
-        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+      {/* Operational Field Directives Queue */}
+      <div className="p-6 rounded-2xl enterprise-card space-y-4">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
           <div className="space-y-0.5">
-            <h3 className="text-base font-semibold text-white">
-              Active Municipal Directives ({pendingActions.length})
+            <h3 className="text-sm font-semibold text-white">
+              Operational Directives Queue ({pendingActions.length} Pending)
             </h3>
             <p className="text-xs text-slate-400">
-              Interventions formulated by Action Agent and assigned to municipal responders
+              Interventions prioritized by Action Agent and routed to BBMP, BWSSB, and KSPCB
             </p>
           </div>
 
           <button
             onClick={() => onNavigate('action_centre')}
-            className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
+            className="text-xs text-sky-400 hover:text-sky-300 font-medium flex items-center space-x-1"
           >
-            <span>Manage All Directives</span>
+            <span>Action Management</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {actions.slice(0, 4).map((action) => (
             <div
               key={action.id}
               onClick={() => onNavigate('action_centre')}
-              className="p-4 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-cyan-500/30 cursor-pointer transition-all space-y-2 group"
+              className="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.06] hover:border-white/[0.12] cursor-pointer transition-colors space-y-2"
             >
               <div className="flex items-center justify-between">
-                <span className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
+                <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
                   action.priority === 'P1 - Immediate'
-                    ? 'bg-red-500/10 text-red-300 border border-red-500/30'
-                    : 'bg-amber-500/10 text-amber-300 border border-amber-500/30'
+                    ? 'bg-red-500/10 text-red-300 border border-red-500/20'
+                    : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                 }`}>
                   {action.priority}
                 </span>
                 <span className="text-[10px] font-mono text-slate-500">{action.dueDate}</span>
               </div>
 
-              <div className="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">
+              <div className="text-xs font-semibold text-slate-200">
                 {action.title}
               </div>
 
-              <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
                 <span>{action.assignedAgency}</span>
-                <span className="text-cyan-400 text-[11px] font-mono">{action.verificationStatus}</span>
+                <span className="text-sky-400 font-mono">{action.verificationStatus}</span>
               </div>
             </div>
           ))}

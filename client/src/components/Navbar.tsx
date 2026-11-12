@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { 
-  Radio, 
+  Activity, 
   MapPin, 
   Bell, 
   RefreshCw, 
   CloudRain, 
   Wind, 
   Cpu, 
-  CheckCircle2,
-  ExternalLink,
-  ChevronDown,
-  Sparkles
+  ChevronDown, 
+  ShieldCheck,
+  Building2,
+  ExternalLink
 } from 'lucide-react';
 import { BengaluruWeather, Anomaly, ActionItem } from '../types';
 
@@ -43,57 +43,58 @@ export const Navbar: React.FC<NavbarProps> = ({
   const criticalAnomaliesCount = anomalies.filter(a => a.severity === 'critical').length;
 
   return (
-    <header className="sticky top-0 z-40 bg-[#060911]/90 backdrop-blur-xl border-b border-white/[0.07] px-5 lg:px-8 py-3 flex items-center justify-between">
-      {/* Brand & Monitored Region */}
+    <header className="sticky top-0 z-40 bg-[#070a10]/95 backdrop-blur-xl border-b border-white/[0.08] px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      {/* Left: Brand Identity & Active Catchment */}
       <div className="flex items-center space-x-6">
         <div 
           onClick={() => onNavigate('overview')}
-          className="flex items-center space-x-3 cursor-pointer group"
+          className="flex items-center space-x-3 cursor-pointer group select-none"
         >
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/10 border border-cyan-500/30 text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(0,229,255,0.35)] transition-all">
-            <Radio className="w-4 h-4 text-cyan-400" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-400/20 text-sky-400 group-hover:border-sky-400/40 transition-colors">
+            <Activity className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="font-extrabold tracking-tight text-white text-base">FIELDSENSE</span>
-              <span className="px-2 py-0.5 text-[10px] font-mono font-bold tracking-wider bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/30 rounded-full">
-                AI
+              <span className="font-bold tracking-tight text-white text-sm">FieldSense AI</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-slate-400 border border-white/[0.06]">
+                ENTERPRISE
               </span>
             </div>
-            <div className="text-[11px] text-slate-400 font-normal tracking-wide">
-              Autonomous Physical-World Intelligence
+            <div className="text-[11px] text-slate-400 font-normal">
+              Autonomous Environmental Intelligence
             </div>
           </div>
         </div>
 
-        {/* Region Chip */}
+        <div className="h-5 w-px bg-white/[0.08] hidden md:block" />
+
+        {/* Region Picker Dropdown */}
         <div className="relative hidden md:block">
           <button 
             onClick={() => setShowRegionMenu(!showRegionMenu)}
-            className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 hover:border-cyan-500/40 text-slate-300 text-xs transition-all"
+            className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-slate-300 text-xs transition-colors"
           >
-            <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="font-medium text-slate-200">Bengaluru Catchment</span>
+            <MapPin className="w-3.5 h-3.5 text-sky-400" />
+            <span className="font-medium text-slate-200">Bengaluru Metropolitan Catchment</span>
             <span className="text-slate-500 text-[11px]">12.97°N, 77.59°E</span>
             <ChevronDown className="w-3 h-3 text-slate-400 ml-0.5" />
           </button>
 
           {showRegionMenu && (
-            <div className="absolute left-0 mt-2 w-72 rounded-2xl bg-[#0c1220] border border-white/10 shadow-2xl p-2 z-50">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1.5 font-bold">
-                Monitored Water Basins
+            <div className="absolute left-0 mt-2 w-72 rounded-xl bg-[#0f1523] border border-white/[0.1] shadow-2xl p-2 z-50">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1.5 font-semibold">
+                Operational Basins
               </div>
               <div className="space-y-1 text-xs">
-                <div className="px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 flex items-center justify-between">
+                <div className="px-3 py-2 rounded-lg bg-sky-950/40 border border-sky-500/20 text-sky-300 flex items-center justify-between">
                   <span>Mahadevapura & East Basin</span>
-                  <span className="text-[10px] font-mono text-cyan-400 font-bold">PRIMARY</span>
+                  <span className="text-[10px] font-mono text-sky-400 font-bold">PRIMARY</span>
                 </div>
-                <div className="px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 flex items-center justify-between cursor-pointer">
-                  <span>Koramangala K-100 Valley</span>
+                <div className="px-3 py-2 rounded-lg hover:bg-white/[0.04] text-slate-300 flex items-center justify-between cursor-pointer">
+                  <span>Koramangala Valley SWD</span>
                   <span className="text-[10px] font-mono text-slate-500">ACTIVE</span>
                 </div>
-                <div className="px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 flex items-center justify-between cursor-pointer">
+                <div className="px-3 py-2 rounded-lg hover:bg-white/[0.04] text-slate-300 flex items-center justify-between cursor-pointer">
                   <span>Hebbal & Yelahanka North</span>
                   <span className="text-[10px] font-mono text-slate-500">ACTIVE</span>
                 </div>
@@ -103,72 +104,70 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Atmospheric Indicator Chip */}
-      <div className="hidden lg:flex items-center space-x-4 px-4 py-1.5 rounded-full bg-slate-900/50 border border-white/10 text-xs font-mono">
+      {/* Center: Live Environmental Status Indicators */}
+      <div className="hidden lg:flex items-center space-x-5 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs">
         <div className="flex items-center space-x-1.5 text-slate-300">
-          <CloudRain className="w-3.5 h-3.5 text-cyan-400" />
-          <span>{weather.precipitation} mm/h</span>
+          <CloudRain className="w-3.5 h-3.5 text-sky-400" />
+          <span className="font-mono">{weather.precipitation} mm/h</span>
         </div>
-        <span className="text-slate-700">|</span>
+        <span className="text-white/[0.1]">|</span>
         <div className="flex items-center space-x-1.5 text-slate-300">
-          <Wind className="w-3.5 h-3.5 text-teal-400" />
-          <span>{weather.windSpeed} km/h</span>
+          <Wind className="w-3.5 h-3.5 text-slate-400" />
+          <span className="font-mono">{weather.windSpeed} km/h</span>
         </div>
-        <span className="text-slate-700">|</span>
-        <div className="flex items-center space-x-1.5">
-          <span className="text-slate-400">AQI:</span>
-          <span className={`font-bold ${weather.aqi > 100 ? 'text-amber-400' : 'text-emerald-400'}`}>
+        <span className="text-white/[0.1]">|</span>
+        <div className="flex items-center space-x-1.5 text-slate-300">
+          <span className="text-slate-500">AQI</span>
+          <span className={`font-mono font-bold ${weather.aqi > 100 ? 'text-amber-400' : 'text-emerald-400'}`}>
             {weather.aqi}
           </span>
         </div>
       </div>
 
-      {/* Mode Toggle & Actions */}
+      {/* Right: Operational Controls */}
       <div className="flex items-center space-x-3">
-        {/* Live / Demo Mode Switcher Pill */}
+        {/* Environment Mode Switcher */}
         <button
           onClick={onToggleDemoMode}
-          className={`flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all border ${
+          className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors border ${
             isDemoMode 
-              ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 hover:bg-amber-500/20'
-              : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20'
+              ? 'bg-amber-500/10 border-amber-500/25 text-amber-300 hover:bg-amber-500/15'
+              : 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 hover:bg-emerald-500/15'
           }`}
         >
-          <span className={`w-2 h-2 rounded-full ${isDemoMode ? 'bg-amber-400' : 'bg-emerald-400 animate-pulse'}`} />
-          <span>{isDemoMode ? 'DEMO MODE' : 'LIVE TELEMETRY'}</span>
+          <span className={`w-1.5 h-1.5 rounded-full ${isDemoMode ? 'bg-amber-400' : 'bg-emerald-400 animate-pulse'}`} />
+          <span>{isDemoMode ? 'DEMO SIMULATION' : 'LIVE TELEMETRY'}</span>
         </button>
 
-        {/* Sync/Refresh Button */}
+        {/* Sync Button */}
         <button
           onClick={onRefreshData}
           disabled={isRefreshing}
-          title="Sync with latest satellite & sensor passes"
-          className="p-2 rounded-xl bg-slate-900/70 border border-white/10 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all disabled:opacity-50"
+          title="Refresh spatial ingestion pipelines"
+          className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors disabled:opacity-50"
         >
-          <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-cyan-400' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-sky-400' : ''}`} />
         </button>
 
-        {/* Notifications Bell */}
+        {/* Notification Bell */}
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative p-2 rounded-xl bg-slate-900/70 border border-white/10 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all"
+            className="relative p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors"
           >
-            <Bell className="w-4 h-4" />
+            <Bell className="w-3.5 h-3.5" />
             {criticalAnomaliesCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-[10px] font-bold font-mono text-white flex items-center justify-center">
-                {criticalAnomaliesCount}
-              </span>
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500" />
             )}
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-2xl bg-[#0c1220] border border-white/10 shadow-2xl p-4 z-50">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl bg-[#0f1523] border border-white/[0.1] shadow-2xl p-4 z-50">
+              <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                 <span className="text-xs font-mono font-bold tracking-wider uppercase text-slate-300">
-                  Priority Alerts ({anomalies.length})
+                  Operational Incidents ({anomalies.length})
                 </span>
-                <span className="text-[10px] font-mono text-cyan-400">Autonomous Stream</span>
+                <span className="text-[10px] text-sky-400 font-mono">Real-Time</span>
               </div>
               <div className="space-y-2 mt-3 max-h-72 overflow-y-auto pr-1">
                 {anomalies.slice(0, 4).map(a => (
@@ -178,18 +177,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                       setShowNotifications(false);
                       onNavigate('change_detection');
                     }}
-                    className="p-3 rounded-xl bg-slate-900/80 border border-white/5 hover:border-cyan-500/40 cursor-pointer transition-all"
+                    className="p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] cursor-pointer transition-colors space-y-1"
                   >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full ${
-                        a.severity === 'critical' ? 'bg-red-500/20 text-red-300' : 'bg-amber-500/20 text-amber-300'
+                    <div className="flex items-center justify-between text-[10px] font-mono">
+                      <span className={`px-1.5 py-0.5 rounded font-bold uppercase ${
+                        a.severity === 'critical' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
                       }`}>
                         {a.severity}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-500">{a.detectedAt}</span>
+                      <span className="text-slate-500">{a.detectedAt}</span>
                     </div>
-                    <div className="text-xs font-semibold text-slate-200 mt-1.5 line-clamp-1">{a.title}</div>
-                    <div className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{a.location.name}</div>
+                    <div className="text-xs font-medium text-slate-200 line-clamp-1">{a.title}</div>
+                    <div className="text-[11px] text-slate-400 line-clamp-1">{a.location.name}</div>
                   </div>
                 ))}
               </div>
@@ -197,13 +196,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
         </div>
 
-        {/* Autonomous Agents Online Indicator */}
-        <div 
-          onClick={() => onNavigate('agent_command_centre')}
-          className="hidden sm:flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 cursor-pointer transition-all text-xs font-mono"
-        >
-          <Cpu className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-          <span>6 AGENTS READY</span>
+        {/* Agency Responder Badge */}
+        <div className="hidden xl:flex items-center space-x-2 pl-3 border-l border-white/[0.08] text-xs text-slate-400">
+          <Building2 className="w-3.5 h-3.5 text-slate-500" />
+          <span>BBMP Command • Water Division</span>
         </div>
       </div>
     </header>

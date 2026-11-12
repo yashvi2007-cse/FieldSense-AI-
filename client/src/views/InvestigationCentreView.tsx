@@ -4,7 +4,6 @@ import {
   MapPin, 
   Clock, 
   CheckCircle2, 
-  AlertTriangle, 
   ChevronRight,
   ArrowRight,
   Download
@@ -40,18 +39,18 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
   );
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 lg:p-8 rounded-3xl modern-card">
-        <div className="space-y-1.5">
+      <div className="p-5 lg:p-6 rounded-2xl enterprise-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <SearchCode className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
+            <SearchCode className="w-4 h-4 text-sky-400" />
+            <h1 className="text-lg font-bold text-white tracking-tight">
               Investigation Centre & Root-Cause Dossier
             </h1>
           </div>
           <p className="text-xs text-slate-400">
-            Multi-modal causal reasoning linking physical anomalies to upstream industrial, cadastral, and topological drivers.
+            Multi-modal causal attribution linking physical anomalies to upstream industrial and cadastral drivers.
           </p>
         </div>
 
@@ -61,10 +60,10 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
             <button
               key={inv.id}
               onClick={() => setActiveInvId(inv.id)}
-              className={`px-3.5 py-1.5 rounded-full border transition-all ${
+              className={`px-3 py-1.5 rounded-lg border transition-colors ${
                 activeInvId === inv.id
-                  ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-bold'
-                  : 'bg-slate-900 border-white/10 text-slate-400 hover:text-slate-200'
+                  ? 'bg-sky-500/20 border-sky-500/40 text-sky-300 font-bold'
+                  : 'bg-white/[0.04] border-white/[0.08] text-slate-400 hover:text-slate-200'
               }`}
             >
               #{inv.id.toUpperCase()}
@@ -74,90 +73,89 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
       </div>
 
       {/* Main Investigation Dossier */}
-      <div className="p-6 lg:p-10 rounded-3xl modern-card space-y-8">
-        {/* Header Metadata */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
-          <div className="space-y-2">
+      <div className="p-6 lg:p-8 rounded-2xl enterprise-card space-y-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+          <div className="space-y-1.5">
             <div className="flex items-center space-x-2">
-              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30 font-bold">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20 font-bold">
                 {activeInvestigation.assignedAgent}
               </span>
-              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 uppercase">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 uppercase font-semibold">
                 {activeInvestigation.status.replace('_', ' ')}
               </span>
               <span className="text-slate-500 text-xs font-mono">{activeInvestigation.timestamp}</span>
             </div>
-            <h2 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-white tracking-tight">
               {activeInvestigation.title}
             </h2>
           </div>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center space-x-2 px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-300 text-xs font-mono transition-colors self-start lg:self-auto"
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-300 text-xs font-mono transition-colors self-start lg:self-auto"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Export Dossier</span>
+            <span>Export Report</span>
           </button>
         </div>
 
-        {/* 4 Quick Structured Q&A Cards */}
+        {/* 2 Quick Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-5 rounded-2xl bg-slate-900/50 border border-white/5 space-y-2">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
-              1. What Changed? (Physical Delta)
+          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-1.5">
+            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400">
+              Physical Deviation
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
               {activeInvestigation.whatChanged}
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/50 border border-white/5 space-y-2">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
-              2. Where Did It Happen? (Location)
+          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-1.5">
+            <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-400">
+              Spatial Coordinates & Boundary
             </div>
             <p className="text-xs text-slate-300 leading-relaxed flex items-center space-x-1.5 font-mono">
-              <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+              <MapPin className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
               <span>{activeInvestigation.whereLocation}</span>
             </p>
           </div>
         </div>
 
         {/* Ranked Causal Hypotheses */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-white">
-              Ranked Causal Hypotheses (Bayesian Attribution)
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
+              Bayesian Causal Attribution
             </h3>
             <span className="text-xs text-slate-500 font-mono">
               Confidence {activeInvestigation.uncertaintyAssessment}
             </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {activeInvestigation.causalHypotheses.map((hyp, index) => (
-              <div key={index} className="p-5 rounded-2xl bg-slate-900/40 border border-white/5 space-y-3">
+              <div key={index} className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-white">
+                  <span className="text-xs font-bold text-white">
                     {index + 1}. {hyp.cause}
                   </span>
-                  <span className="text-xs font-mono font-bold text-cyan-300 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/30">
+                  <span className="text-xs font-mono font-bold text-sky-300 px-2.5 py-0.5 rounded bg-sky-950/60 border border-sky-500/25">
                     {hyp.probability}% PROBABILITY
                   </span>
                 </div>
 
                 <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                   <div 
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" 
+                    className="h-full rounded-full bg-sky-400" 
                     style={{ width: `${hyp.probability}%` }}
                   />
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+                <div className="flex items-center justify-between text-xs text-slate-400 pt-0.5">
                   <span>Rationale: {hyp.rationale}</span>
                   <button
                     onClick={() => onInspectEvidence(hyp.evidenceRef)}
-                    className="text-cyan-400 hover:text-cyan-300 font-mono text-xs flex items-center space-x-1"
+                    className="text-sky-400 hover:text-sky-300 font-mono text-xs flex items-center space-x-1"
                   >
                     <span>Inspect #{hyp.evidenceRef.toUpperCase()}</span>
                     <ChevronRight className="w-3 h-3" />
@@ -169,17 +167,17 @@ export const InvestigationCentreView: React.FC<InvestigationCentreViewProps> = (
         </div>
 
         {/* Action Directives */}
-        <div className="p-6 rounded-2xl bg-slate-900/50 border border-white/5 space-y-3">
+        <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-white">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
               Recommended Municipal Directives
             </h3>
             <button
               onClick={() => onNavigate('action_centre')}
-              className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
+              className="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center space-x-1"
             >
               <span>View in Action Centre</span>
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
