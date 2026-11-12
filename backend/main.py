@@ -1,3 +1,4 @@
+import asyncio
 import math
 from datetime import datetime
 from typing import List, Optional, Dict, Any
@@ -63,13 +64,14 @@ async def get_live_weather():
     """Fetch live meteorological & air quality observations from Open-Meteo"""
     try:
         async with httpx.AsyncClient(timeout=4.0) as client:
-            weather_req = client.get(
+            weather_task = client.get(
                 f"https://api.open-meteo.com/v1/forecast?latitude={BENGALURU_LAT}&longitude={BENGALURU_LON}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m&timezone=Asia%2FKolkata"
             )
-            aqi_req = client.get(
+            aqi_task = client.get(
                 f"https://air-quality-api.open-meteo.com/v1/air-quality?latitude={BENGALURU_LAT}&longitude={BENGALURU_LON}&current=european_aqi,pm10,pm2_5"
             )
-            w_res, a_res = await httpx.gather(weather_req, aqi_req, return_exceptions=True)
+            results = await asyncio.gather(weather_task, aqi_task, return_exceptions=True)
+            w_res, a_res = results[0], results[1]
 
             current_w = {}
             if not isinstance(w_res, Exception) and w_res.status_code == 200:
